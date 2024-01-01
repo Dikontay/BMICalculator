@@ -28,6 +28,7 @@
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="#" onclick="setUnits('imperial')">Imperial</a></li>
                     <li><a class="dropdown-item" href="#" onclick="setUnits('metric')">Metric</a></li>
+
                 </ul>                
               </li>
              
@@ -48,6 +49,10 @@
                         </td>
                         <td width = "60">Height
                             <span id="heightcm">(cm)</span>
+                            <div class="displayheight">
+                                <input type="hidden" name="height" value="(cm)">
+                            </div>
+                          
                         </td>
                        
                         <td width = "240">
@@ -55,7 +60,7 @@
         
                         </td>
                         <td width = "60">Weight
-                            <span id="weightkg">(kg)</span>
+                            <span id="weightkg" name="weightkg">(kg)</span>
                         </td>
                         
                         <td width = "240">
@@ -70,6 +75,9 @@
                 </tbody>
                </table>
         </form>
+        <div class="m-5 border">
+            <pre id="output" ></pre>
+        </div>
        
       </div>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
@@ -79,10 +87,26 @@
                  // Update placeholders for imperial units
                 document.getElementById('heightcm').innerText='(inch)'
                 document.getElementById('weightkg').innerText='(pound)'
+                document.getElementsByClassName('displayheight')[0].innerHTML=`<input type="hidden" name="height" value="(inch)">`;
         } else {
             document.getElementById('heightcm').innerText='(cm)'
             document.getElementById('weightkg').innerText='(kg)'
         }
+
+        document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('calculator').addEventListener('submit', function (e) {
+            e.preventDefault(); // Prevent normal form submission
+            var formData = new FormData(this);
+
+            fetch('/bmicalculator', {
+                method: 'POST',
+                body: formData
+            }).then(response => response.text())
+              .then(result => {
+                  document.getElementById('output').innerText = result;
+              }).catch(error => console.error('Error:', error));
+        });
+    });
     }
     </script>
     
