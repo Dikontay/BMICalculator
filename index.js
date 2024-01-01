@@ -25,12 +25,12 @@ app.post('/bmicalculator', (req, res)=>{
 
 })
 
-function calculateBMIMetric(){
-
+function calculateBMIMetric(weight, height) {
+    return weight / ((height / 100) ** 2);
 }
 
-function calculateBMIImperial(){
-
+function calculateBMIImperial(weight, height) {
+    return (703 * weight) / (height ** 2);
 }
 
 app.listen(port, () => console.log(`Listening port in http://localhost:${port}/`))
