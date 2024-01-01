@@ -5,33 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BMI Calculator</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <style> 
-        table { 
-            border: 1px solid black; 
-            margin-left: auto; 
-            margin-right: auto; 
-        } 
-          
-        input[type="button"] { 
-            width: 100%; 
-            padding: 20px 40px; 
-            background-color: green; 
-            color: white; 
-            font-size: 24px; 
-            font-weight: bold; 
-            border: none; 
-            border-radius: 5px; 
-        } 
-          
-        input[type="text"] { 
-            padding: 20px 30px; 
-            font-size: 24px; 
-            font-weight: bold; 
-            border: none; 
-            border-radius: 5px; 
-            border: 2px solid black; 
-        } 
-    </style> 
+ 
 </head>
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -42,7 +16,7 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                <a class="nav-link active" aria-current="page" href="/">Home</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="https://github.com/Dikontay/BMICalculator" target="_blank">Link to GitHub</a>
@@ -63,39 +37,40 @@
         </div>
       </nav>
       <div class="container-fluid">
-        <table id="calcu"> 
-            <tr> 
-                <td colspan="3"> 
-                    <input type="text" id="result"> 
-                </td> 
-                <td><input type="button" value="c"></td> 
-            </tr> 
-      
-            <tr> 
-                <td><input type="button" value="1"></td> 
-                <td><input type="button" value="2"></td> 
-                <td><input type="button" value="3"></td> 
-                <td><input type="button" value="/"></td> 
-            </tr> 
-            <tr> 
-                <td><input type="button" value="4"></td> 
-                <td><input type="button" value="5"></td> 
-                <td><input type="button" value="6"></td> 
-                <td><input type="button" value="*"></td> 
-            </tr> 
-            <tr> 
-                <td><input type="button" value="7"></td> 
-                <td><input type="button" value="8"></td> 
-                <td><input type="button" value="9"></td> 
-                <td><input type="button" value="-"></td> 
-            </tr> 
-            <tr> 
-                <td><input type="button" value="0"></td> 
-                <td><input type="button" value="."></td> 
-                <td><input type="button" value="="></td> 
-                <td><input type="button" value="+"></td> 
-            </tr> 
-        </table> 
+        <form action="/bmicalculator" method="post">
+            <table id="calculator">
+                <tbody>
+                    <tr>
+                        <td width = "60">Age</td>
+                        <td width = "240">
+                            <input type="text" name="inputAge">
+                           
+                        </td>
+                        <td width = "60">Height
+                            <span>(cm)</span>
+                        </td>
+                       
+                        <td width = "240">
+                            <input type="text" name="inputHeight">
+        
+                        </td>
+                        <td width = "60">Weight
+                            <span>(kg)</span>
+                        </td>
+                        
+                        <td width = "240">
+                            <input type="text" name="inputWeight">
+                        </td>
+                        <td width = "300">
+                            <input type="submit" value="Submit">
+                        </td>
+                        
+        
+                    </tr>
+                </tbody>
+               </table>
+        </form>
+       
       </div>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
