@@ -24,19 +24,33 @@ app.get('/', (req, res) => {
 app.get('/bmicalculator', (req, res)=>{res.sendFile(templatePath.join(__dirname + '/bmi.html'))})
 
 
+function calculateBMICategory(bmi) {
+    if (bmi < 18.5) {
+        return 'Underweight';
+    } else if (bmi >= 18.5 && bmi <= 24.9) {
+        return 'Normal weight';
+    } else if (bmi >= 25 && bmi <= 29.9) {
+        return 'Overweight';
+    } else {
+        return 'Obesity';
+    }
+}
+
 app.post('/bmicalculator', (req, res) => {
     let age = req.body.inputAge;
     let height = req.body.inputHeight;
     let weight = req.body.inputWeight;
     let unit = String(req.body.height);
-    let result;
+    let bmi;
     if (unit == "(cm)") {
-        result = calculateBMIMetric(weight, height);
+        bmi = calculateBMIMetric(weight, height);
     } else {
-        result = calculateBMIImperial(weight, height);
+        bmi = calculateBMIImperial(weight, height);
     }
-    //  res.send(String(result))
+    let category = calculateBMICategory(bmi);
+    res.send({ bmi: bmi.toFixed(2), category: category });
 });
+
 
 
 function calculateBMIMetric(weight, height) {
